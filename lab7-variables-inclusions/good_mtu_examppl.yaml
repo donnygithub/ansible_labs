@@ -1,0 +1,20 @@
+---
+
+- name: Variable Example
+  hosts: nxos
+  tasks:
+    - name: Change Interface Desc and MTU
+      nxos_interface:
+        name: "{{ interface }}"
+        description: "{{ int_desc }}"
+        mtu: "{{ int_mtu }}"
+        admin_state: up
+    - nxos_facts:
+    - name: Get MTU Value
+      debug: var=ansible_net_interfaces['Ethernet1/2']['mtu']
+    - name: Verify MTU is set to "{{ int_mtu }}"
+      assert: { that: "ansible_net_interfaces['Ethernet1/2']['mtu'] == \"{{ int_mtu }}\""}
+    - name: Get "{{ interface }}" description
+      debug: var=ansible_net_interfaces['Ethernet1/2']['description']
+    - name: Verify "{{ interface }}" description matches "{{ int_desc }}"
+      assert: { that: "ansible_net_interfaces['Ethernet1/2']['description'] == \"{{ int_desc }}\""}

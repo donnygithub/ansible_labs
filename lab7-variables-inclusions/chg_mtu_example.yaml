@@ -1,0 +1,17 @@
+---
+
+ -  name: Change Interface Desc and MTU
+    hosts: nxos
+    gather_facts: yes
+
+    tasks:
+    
+    - nxos_interface:
+        name: "{{ interface }}"
+        description: "{{ int_desc }}"
+        mtu: "{{ int_mtu }}"
+        admin_state: up
+        assert: 
+         that: 
+          - "ansible_net_interfaces['Ethernet1/2']['mtu'] == \"{{ int_mtu }}\" "
+         msg:  "What happened here"
