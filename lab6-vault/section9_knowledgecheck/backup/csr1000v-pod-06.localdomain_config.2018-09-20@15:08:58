@@ -1,0 +1,144 @@
+Building configuration...
+
+Current configuration : 1349 bytes
+!
+! Last configuration change at 04:01:07 UTC Wed Sep 12 2018 by admin
+!
+version 15.5
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname CSR1000v-Pod-06
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$QQHq$xkVETnIS3.695RgjemQlT0
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+
+ip domain name cisco
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9Q3V02905XJ
+!
+spanning-tree extend system-id
+!
+username admin privilege 15 secret 5 $1$rohE$5L.CHOzVBvTlM8e.e6Kom/
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+! 
+! 
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ ip address 172.16.15.224 255.255.0.0
+ negotiation auto
+!
+interface GigabitEthernet2
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet3
+ no ip address
+ shutdown
+ negotiation auto
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip tftp source-interface GigabitEthernet1
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1 172.16.0.1
+ip ssh version 2
+!
+!
+!
+!
+control-plane
+!
+ !
+ !
+ !
+ !
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+!
+ntp server pool.ntp.org
+!
+end

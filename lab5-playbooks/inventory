@@ -2,13 +2,20 @@
 localhost
 
 [eos]
-veos-pod-XX.localdomain
+veos-pod-06.localdomain
 
 [nxos]
-n9k-standalone-XX.localdomain
+n9k-standalone-01.localdomain
+n9k-standalone-02.localdomain
+n9k-standalone-03.localdomain
+n9k-standalone-06.localdomain
 
 [router]
-csr1000v-pod-XX.localdomain
+csr1000v-pod-06.localdomain
 
 [junos]
-vsrx-pod-XX.localdomain
+vsrx-pod-06.localdomain
+
+[network]
+n9k-standalone-06.localdomain ansible_ssh_host=10.1.150.18 ansible_ssh_user=admin ansible_ssh_pass=Cisco123
+

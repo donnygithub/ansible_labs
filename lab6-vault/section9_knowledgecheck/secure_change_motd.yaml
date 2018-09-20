@@ -16,8 +16,7 @@
    - name: modify banner
      ios_banner:
        banner: motd
-       text: |
-         This MOTD was created by Don
+       text: "{{ motd_message }}"
        state: present
    - debug:
-      msg: var=ios_banner
+      msg: "{{ motd_message }}"

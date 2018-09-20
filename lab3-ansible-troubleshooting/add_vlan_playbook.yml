@@ -1,0 +1,17 @@
+---
+ - name: verify nxos version
+   hosts: nxos
+   connection: local
+   gather_facts: yes
+
+   tasks:
+    - nxos_facts: 
+    - debug: var=vlan_list
+    - name: add some VLAN
+      nxos_vlan:
+          vlan_id: 2001
+    - nxos_facts:
+    - name: verify vlan {{ vlan_id }} was added
+      debug: var=vlan_list
+    #  register: vlan_added
+    #- debug: var=vlan_added.stdout_lines 
